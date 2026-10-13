@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import MobileMenu from "@/components/mobile-menu";
 import SafeContractState from "@/components/safe-contract-state";
 
 type Finding = {
@@ -74,6 +75,7 @@ export default function AnalysisResults({
             <span className="ml-1 h-8 w-px bg-line" aria-hidden="true" />
             <span className="rounded-full bg-[#eef2f7] px-3.5 py-2 text-xs font-semibold text-slate">CW</span>
           </nav>
+          <MobileMenu items={[{ label: "New Scan", href: "/analyzer" }, { label: "Saved Contracts", href: "/saved-contracts" }]} />
         </div>
       </header>
 

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import MobileMenu from "@/components/mobile-menu";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react";
 
@@ -243,10 +244,11 @@ export default function AnalyzerPage() {
               <span className="ml-1 h-8 w-px bg-line" aria-hidden="true" />
               <span className="rounded-full bg-[#eef2f7] px-3.5 py-2 text-xs font-semibold text-slate">CW</span>
             </nav>
+            <MobileMenu items={[{ label: "New Scan", href: "/analyzer" }, { label: "Saved Contracts", href: "/saved-contracts" }]} />
           </div>
         </header>
 
-        <div className="mx-auto max-w-[1320px] px-5 py-8 sm:px-8 sm:py-10">
+        <div className="mx-auto max-w-[1320px] px-4 py-6 sm:px-8 sm:py-10">
           <div className="flex items-start gap-3.5 rounded-xl border border-line bg-white px-5 py-4 shadow-card sm:px-6">
             <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#fff7e7] text-[#bd7b12]" aria-hidden="true">!</span>
             <p className="text-[13px] leading-6 text-slate sm:text-[14px]"><strong className="font-bold tracking-wide text-ink">LEGAL NOTICE:</strong>{" "}ClauseGuard provides an informational first-pass analysis, not professional legal advice, and does not create an attorney-client relationship.</p>
@@ -319,10 +321,11 @@ export default function AnalyzerPage() {
             <span className="ml-1 h-8 w-px bg-line" aria-hidden="true" />
             <button type="button" className="rounded-full bg-[#eef2f7] px-3.5 py-2 text-xs font-semibold text-slate transition-colors hover:bg-line">CW</button>
           </nav>
+            <MobileMenu items={[{ label: "New Scan", href: "/analyzer" }, { label: "Saved Contracts", href: "/saved-contracts" }]} />
         </div>
       </header>
 
-      <div className="mx-auto max-w-[1320px] px-5 py-8 sm:px-8 sm:py-11">
+      <div className="mx-auto max-w-[1320px] px-4 py-6 sm:px-8 sm:py-11">
         <div className="mb-10 flex items-start gap-3.5 rounded-xl border border-line bg-white px-5 py-4 shadow-card sm:px-6">
           <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#fff7e7] text-[#bd7b12]" aria-hidden="true">!</span>
           <p className="text-[13px] leading-6 text-slate sm:text-[14px]"><strong className="font-bold tracking-wide text-ink">LEGAL NOTICE:</strong>{" "}ClauseGuard provides an informational first-pass analysis, not professional legal advice, and does not create an attorney-client relationship.</p>
@@ -342,23 +345,23 @@ export default function AnalyzerPage() {
                   <label htmlFor="contract-text" className="text-[13px] font-bold uppercase tracking-[0.08em] text-ink">Contract text</label>
                   <span className="hidden items-center gap-1.5 text-[12px] text-muted sm:flex"><LockIcon /> Private workspace</span>
                 </div>
-                <textarea id="contract-text" value={contractText} onChange={(event) => setContractText(event.target.value)} placeholder="Paste the full legal text here..." className="mt-5 min-h-[370px] w-full resize-y rounded-lg border border-line/80 bg-[#fbfcfe] px-4 py-4 text-[15px] leading-7 text-ink outline-none transition-colors placeholder:font-serif placeholder:text-[#9aaac0] focus:border-blue focus:ring-4 focus:ring-blue/10 sm:min-h-[410px]" />
+                <textarea id="contract-text" value={contractText} onChange={(event) => setContractText(event.target.value)} placeholder="Paste the full legal text here..." className="mt-5 min-h-[300px] w-full resize-y rounded-lg border border-line/80 bg-[#fbfcfe] px-4 py-4 text-[15px] leading-7 text-ink outline-none transition-colors placeholder:font-serif placeholder:text-[#9aaac0] focus:border-blue focus:ring-4 focus:ring-blue/10 sm:min-h-[410px]" />
                 <div className="mt-3 flex items-center justify-between gap-4 text-[12px] text-muted">
                   <span>{contractText.length > 0 ? contractText.length.toLocaleString() + " characters" : "Your contract text stays in your workspace."}</span>
                   {fileName && <span className="max-w-[45%] truncate text-blue">{fileName}</span>}
                 </div>
                 <button type="button" onClick={() => fileInputRef.current?.click()} className="mt-4 flex w-full items-center justify-between rounded-lg border border-dashed border-[#b9c8dc] bg-[#fbfcfe] px-4 py-3 text-left transition-colors hover:border-blue hover:bg-blue-pale/30 lg:hidden">
-                  <span className="flex items-center gap-2.5 text-[13px] font-semibold text-ink"><UploadIcon /> {isExtracting ? "Extracting text..." : "Upload a document"}</span>
-                  <span className="text-[11px] text-muted">PDF, DOC, DOCX</span>
+                  <span className="flex min-w-0 items-center gap-2.5 text-[13px] font-semibold text-ink"><UploadIcon /> {isExtracting ? "Extracting text..." : "Upload a document"}</span>
+                  <span className="shrink-0 text-[11px] text-muted">PDF, DOC, DOCX</span>
                 </button>
               </div>
 
-              <div className="mt-4 flex flex-col-reverse items-stretch justify-between gap-3 sm:flex-row sm:items-center">
-                <div className="flex gap-2.5">
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-wrap gap-2.5">
                   <button type="button" onClick={clearContract} className="rounded-lg border border-line bg-white px-4 py-2.5 text-[13px] font-semibold text-slate transition-colors hover:border-ink hover:text-ink">Clear</button>
                   <button type="button" onClick={() => setContractText(sampleContract)} className="rounded-lg border border-line bg-white px-4 py-2.5 text-[13px] font-semibold text-slate transition-colors hover:border-ink hover:text-ink">Load sample NDA</button>
                 </div>
-                <button type="button" disabled={!contractText.trim() || isAnalyzing || cooldownSeconds > 0} onClick={handleAnalyze} className="flex items-center justify-center gap-3 rounded-lg bg-ink px-6 py-3 text-[14px] font-semibold text-white shadow-[0_8px_18px_rgba(16,26,46,0.12)] transition-all hover:-translate-y-0.5 hover:bg-[#1c2942] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0">
+                <button type="button" disabled={!contractText.trim() || isAnalyzing || cooldownSeconds > 0} onClick={handleAnalyze} className="flex items-center justify-center gap-3 rounded-lg bg-ink px-6 py-3 text-[14px] font-semibold text-white shadow-[0_8px_18px_rgba(16,26,46,0.12)] transition-all hover:-translate-y-0.5 hover:bg-[#1c2942] w-full sm:w-auto disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0">
                   {isAnalyzing ? "Analyzing contract..." : cooldownSeconds > 0 ? "Try again in " + cooldownSeconds + "s" : "Analyze contract"}
                   {!isAnalyzing && cooldownSeconds === 0 && <ArrowIcon />}
                 </button>
