@@ -57,6 +57,7 @@ export default function AnalyzerPage() {
   const [isExtracting, setIsExtracting] = useState(false);
   const [cooldownSeconds, setCooldownSeconds] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const [notification, setNotification] = useState("");
   const [uploadError, setUploadError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -178,6 +179,13 @@ export default function AnalyzerPage() {
       const data = await response.json().catch(() => null);
 
       if (!response.ok) {
+        if (response.status === 429) {
+          setNotification("Daily analysis limit reached. Please try again tomorrow.");
+          window.setTimeout(() => setNotification(""), 6000);
+          return;
+        }
+
+
         const detail = typeof data?.detail === "string" ? data.detail : "The analysis request could not be completed.";
         throw new Error(detail);
       }
@@ -286,6 +294,17 @@ export default function AnalyzerPage() {
 
   return (
     <main className="min-h-screen bg-canvas text-ink">
+      {notification && (
+        <div className="pointer-events-none fixed inset-x-4 top-5 z-50 flex justify-center sm:inset-x-auto sm:right-6 sm:w-[390px]" aria-live="assertive">
+          <div role="alert" className="pointer-events-auto flex w-full items-start gap-3 rounded-xl border border-[#f2c78b] bg-[#fffaf0] px-4 py-3.5 text-[#7b5317] shadow-[0_12px_32px_rgba(16,26,46,0.16)]">
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f7dca8] text-sm font-bold" aria-hidden="true">!</span>
+            <p className="flex-1 text-[13px] font-semibold leading-5">{notification}</p>
+            <button type="button" onClick={() => setNotification("")} className="rounded-md p-1 text-[#9a7235] transition-colors hover:bg-[#f7e7c5]" aria-label="Dismiss notification">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </div>
+      )}
       <header className="border-b border-line/80 bg-white">
         <div className="mx-auto flex h-[76px] max-w-[1320px] items-center justify-between px-5 sm:px-8">
           <Link href="/" className="flex items-center gap-3" aria-label="ClauseGuard home">

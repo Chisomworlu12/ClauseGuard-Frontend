@@ -62,11 +62,11 @@ export default function AnalysisResults({
   return (
     <main className="min-h-screen bg-canvas text-ink">
       <header className="border-b border-line/80 bg-white">
-        <div className="mx-auto flex h-[76px] max-w-[1320px] items-center justify-between px-5 sm:px-8">
+        <div className="mx-auto flex h-19 max-w-330 items-center justify-between px-5 sm:px-8">
           <Link href="/" className="flex items-center gap-3" aria-label="ClauseGuard home">
             <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-ink text-white shadow-sm"><Image src="/icon.png" alt="" width={24} height={24} className="h-6 w-6 rounded-md" /></span>
             <span className="text-[19px] font-bold tracking-[-0.04em]">ClauseGuard</span>
-            <span className="hidden rounded-md border border-blue/20 bg-blue-pale px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-blue sm:inline-flex">Analyzer</span>
+            <span className="hidden rounded-md border border-blue/20 bg-blue-pale px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-blue sm:inline-flex">Analyzer</span>
           </Link>
           <nav className="hidden items-center gap-8 text-[14px] text-slate md:flex" aria-label="Main navigation">
             <Link className="font-semibold text-ink" href="/analyzer">New Scan</Link>
@@ -77,7 +77,7 @@ export default function AnalysisResults({
         </div>
       </header>
 
-      <div className="mx-auto max-w-[1320px] px-5 py-8 sm:px-8 sm:py-10">
+      <div className="mx-auto max-w-330 px-5 py-8 sm:px-8 sm:py-10">
         <div className="flex items-start gap-3.5 rounded-xl border border-line bg-white px-5 py-4 shadow-card sm:px-6">
           <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#fff7e7] text-[#bd7b12]" aria-hidden="true">!</span>
           <p className="text-[13px] leading-6 text-slate sm:text-[14px]"><strong className="font-bold tracking-wide text-ink">LEGAL NOTICE:</strong>{" "}ClauseGuard provides an informational first-pass analysis, not professional legal advice, and does not create an attorney-client relationship.</p>
