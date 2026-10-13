@@ -97,6 +97,10 @@ export default function AnalyzerPage() {
   const selectFile = async (file?: File) => {
     if (!file) return;
 
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+
     setFileName(file.name);
     setUploadError("");
     setIsExtracting(true);
@@ -345,15 +349,16 @@ export default function AnalyzerPage() {
                   <label htmlFor="contract-text" className="text-[13px] font-bold uppercase tracking-[0.08em] text-ink">Contract text</label>
                   <span className="hidden items-center gap-1.5 text-[12px] text-muted sm:flex"><LockIcon /> Private workspace</span>
                 </div>
-                <textarea id="contract-text" value={contractText} onChange={(event) => setContractText(event.target.value)} placeholder="Paste the full legal text here..." className="mt-5 min-h-[300px] w-full resize-y rounded-lg border border-line/80 bg-[#fbfcfe] px-4 py-4 text-[15px] leading-7 text-ink outline-none transition-colors placeholder:font-serif placeholder:text-[#9aaac0] focus:border-blue focus:ring-4 focus:ring-blue/10 sm:min-h-[410px]" />
+                <textarea id="contract-text" value={contractText} onChange={(event) => setContractText(event.target.value)} placeholder="Paste the full legal text here..." className="mt-5 min-h-[300px] w-full resize-y rounded-lg border border-line/80 bg-[#fbfcfe] px-4 py-4 text-base leading-7 text-ink outline-none transition-colors placeholder:font-serif placeholder:text-[#9aaac0] focus:border-blue focus:ring-4 focus:ring-blue/10 sm:min-h-[410px] sm:text-[15px]" />
                 <div className="mt-3 flex items-center justify-between gap-4 text-[12px] text-muted">
                   <span>{contractText.length > 0 ? contractText.length.toLocaleString() + " characters" : "Your contract text stays in your workspace."}</span>
                   {fileName && <span className="max-w-[45%] truncate text-blue">{fileName}</span>}
                 </div>
                 <button type="button" onClick={() => fileInputRef.current?.click()} className="mt-4 flex w-full items-center justify-between rounded-lg border border-dashed border-[#b9c8dc] bg-[#fbfcfe] px-4 py-3 text-left transition-colors hover:border-blue hover:bg-blue-pale/30 lg:hidden">
-                  <span className="flex min-w-0 items-center gap-2.5 text-[13px] font-semibold text-ink"><UploadIcon /> {isExtracting ? "Extracting text..." : "Upload a document"}</span>
+                  <span className="flex min-w-0 items-center gap-2.5 text-[13px] font-semibold text-ink"><UploadIcon /><span className="truncate">{isExtracting ? "Extracting text..." : fileName || "Upload a document"}</span></span>
                   <span className="shrink-0 text-[11px] text-muted">PDF, DOC, DOCX</span>
                 </button>
+                <input ref={fileInputRef} type="file" accept=".pdf,.docx,.txt" className="sr-only" onChange={handleFileChange} aria-label="Upload a contract document" />
               </div>
 
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -368,9 +373,8 @@ export default function AnalyzerPage() {
               </div>
             </div>
 
-            <button type="button" onClick={() => fileInputRef.current?.click()} onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)} onDrop={handleDrop} className={["group hidden min-h-[545px] lg:flex flex-col items-center justify-center rounded-xl border border-dashed px-8 text-center transition-all", isDragging ? "border-blue bg-blue-pale/60 shadow-[inset_0_0_0_1px_var(--blue)]" : "border-[#b9c8dc] bg-white hover:border-blue hover:bg-blue-pale/30"].join(" ")} aria-label="Upload a contract document">
-              <input ref={fileInputRef} type="file" accept=".pdf,.docx,.txt" className="hidden" onChange={handleFileChange} />
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eef3f9] text-slate transition-colors group-hover:bg-blue-pale group-hover:text-blue"><UploadIcon /></span>
+              <button type="button" onClick={() => fileInputRef.current?.click()} onDragOver={(event) => { event.preventDefault(); setIsDragging(true); }} onDragLeave={() => setIsDragging(false)} onDrop={handleDrop} className={["group hidden min-h-[545px] lg:flex flex-col items-center justify-center rounded-xl border border-dashed px-8 text-center transition-all", isDragging ? "border-blue bg-blue-pale/60 shadow-[inset_0_0_0_1px_var(--blue)]" : "border-[#b9c8dc] bg-white hover:border-blue hover:bg-blue-pale/30"].join(" ")} aria-label="Upload a contract document">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eef3f9] text-slate transition-colors group-hover:bg-blue-pale group-hover:text-blue"><UploadIcon /></span>
               <span className="mt-6 text-[16px] font-semibold text-ink">{fileName || "Upload a contract"}</span>
               <span className="mt-2 max-w-[270px] text-[13px] leading-6 text-muted">{fileName ? "Document selected. Text has been extracted and is ready to analyze." : "Drag and drop a PDF, DOCX, or TXT file here, or click to browse."}</span>
               {!fileName && <span className="mt-5 rounded-md border border-line bg-white px-3 py-2 text-[12px] font-semibold text-slate">Browse files</span>}

@@ -40,7 +40,7 @@ export default function AdminDashboard() {
             <p className="mt-3 text-sm leading-6 text-slate">Enter your admin access token to view aggregate ClauseGuard usage. Contract text and raw IP addresses are never shown here.</p>
             <form className="mt-7" onSubmit={loadMetrics}>
               <label htmlFor="admin-token" className="text-sm font-semibold text-ink">Admin access token</label>
-              <input id="admin-token" type="password" value={token} onChange={(event) => setToken(event.target.value)} autoComplete="current-password" className="mt-2 w-full rounded-lg border border-line bg-[#fbfcfe] px-4 py-3 text-sm text-ink outline-none focus:border-blue focus:ring-4 focus:ring-blue/10" placeholder="Enter your private token" />
+              <input id="admin-token" type="password" value={token} onChange={(event) => setToken(event.target.value)} autoComplete="current-password" className="mt-2 w-full rounded-lg border border-line bg-[#fbfcfe] px-4 py-3 text-base text-ink outline-none focus:border-blue focus:ring-4 focus:ring-blue/10 sm:text-sm" placeholder="Enter your private token" />
               {error && <p className="mt-3 text-sm leading-6 text-red" role="alert">{error}</p>}
               <button type="submit" disabled={!token.trim() || isLoading} className="mt-5 w-full rounded-lg bg-ink px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1c2942] disabled:cursor-not-allowed disabled:opacity-40">{isLoading ? "Checking access..." : "Open dashboard"}</button>
             </form>
