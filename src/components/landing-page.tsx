@@ -28,8 +28,8 @@ export default function LandingPage() {
         <div className="mx-auto flex h-[76px] max-w-[1180px] items-center justify-between px-5 sm:px-8">
           <Link href="/" className="flex items-center gap-2.5" aria-label="ClauseGuard home"><ShieldMark /><span className="text-[15px] font-bold tracking-[-0.04em]">ClauseGuard</span></Link>
           <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-[12px] font-medium text-slate md:flex"><a href="#methodology">Platform</a><a href="#evaluation">Accuracy Test</a><a href="#methodology">Methodology</a></nav>
-          <MobileMenu items={[{ label: "Platform", href: "#methodology" }, { label: "Accuracy Test", href: "#evaluation" }, { label: "Methodology", href: "#methodology" }]} />
-          <Link href="/analyzer" className="flex items-center gap-2 rounded-md bg-ink px-4 py-2.5 text-[12px] font-semibold text-white transition-transform hover:-translate-y-0.5">Try it free <ArrowIcon /></Link>
+          <MobileMenu items={[{ label: "Platform", href: "#methodology" }, { label: "Accuracy Test", href: "#evaluation" }, { label: "Methodology", href: "#methodology" }, { label: "Try it free", href: "/analyzer" }]} />
+          <Link href="/analyzer" className="hidden items-center gap-2 rounded-md bg-ink px-4 py-2.5 text-[12px] font-semibold text-white transition-transform hover:-translate-y-0.5 md:flex">Try it free <ArrowIcon /></Link>
         </div>
       </header>
 
