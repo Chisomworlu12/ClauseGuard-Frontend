@@ -84,20 +84,20 @@ export default function AnalysisResults({
         </div>
 
         <section className="mt-8" aria-labelledby="results-title">
-          <div className="flex items-center gap-3 rounded-xl border border-red/25 border-l-4 bg-[#fff3f3] px-5 py-4 text-[15px] font-semibold text-[#9f2424] shadow-card sm:px-6">
+          <div className="flex flex-wrap items-center gap-3 rounded-xl border border-red/25 border-l-4 bg-[#fff3f3] px-5 py-4 text-[15px] font-semibold text-[#9f2424] shadow-card sm:px-6">
             <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#ef4444]" aria-hidden="true" />
-            <h1 id="results-title">{verdictLabel}</h1>
+            <h1 id="results-title" className="min-w-0 break-words">{verdictLabel}</h1>
           </div>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.75fr)]">
             <article className="rounded-xl border border-line bg-white p-5 shadow-card sm:p-8">
-              <div className="border-b border-line pb-4 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#8da0bb]">
+              <div className="border-b border-line pb-4 break-words text-[11px] font-semibold uppercase tracking-[0.08em] text-[#8da0bb]">
                 {(fileName || "Contract text").toUpperCase()} (ACTIVE VIEW)
               </div>
-              <p className="mt-6 whitespace-pre-wrap font-serif text-[15px] leading-8 text-[#50627d]">{previewText}</p>
-              <div className="mt-7 flex items-center justify-between rounded-lg border border-line bg-[#f8fafc] px-4 py-3 text-[13px] text-slate">
-                <span className="flex items-center gap-2"><span className="text-green">✓</span>{Math.max(0, contractText.split(/\s+/).filter(Boolean).length)} words reviewed</span>
-                <span className="text-muted">{findings.length} detection{findings.length === 1 ? "" : "s"}</span>
+              <p className="mt-6 whitespace-pre-wrap break-words font-serif text-[15px] leading-8 text-[#50627d]">{previewText}</p>
+              <div className="mt-7 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-line bg-[#f8fafc] px-4 py-3 text-[13px] text-slate">
+                <span className="min-w-0 break-words flex items-center gap-2"><span className="text-green">✓</span>{Math.max(0, contractText.split(/\s+/).filter(Boolean).length)} words reviewed</span>
+                <span className="shrink-0 text-muted">{findings.length} detection{findings.length === 1 ? "" : "s"}</span>
               </div>
             </article>
 
@@ -111,7 +111,7 @@ export default function AnalysisResults({
                   return (
                     <details key={finding.clause} className={["group rounded-xl border-l-4 border bg-white p-4 shadow-card", isHigh ? "border-l-red border-red/25" : "border-l-blue border-blue/25"].join(" ")}>
                       <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                        <div className="flex items-center justify-between gap-3 text-[10px] font-bold uppercase tracking-[0.08em]">
+                        <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] font-bold uppercase tracking-[0.08em]">
                           <span className={isHigh ? "text-red" : "text-blue"}>{isHigh ? "● Critical risk" : "● Review"}</span>
                           <span className="text-muted">Clause {finding.clause}</span>
                         </div>

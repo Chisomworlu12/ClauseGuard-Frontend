@@ -27,8 +27,8 @@ export default function SafeContractState({ fileName }: { fileName: string }) {
         </div>
 
         <section className="mt-9" aria-labelledby="safe-result-title">
-          <h1 id="safe-result-title" className="text-[30px] font-bold tracking-[-0.05em] text-ink sm:text-[40px]">Scan Verdict: Clean Contract</h1>
-          <p className="mt-3 text-[14px] leading-6 text-slate">Automatic assessment for {fileName}. Matches all baseline risk compliance parameters.</p>
+          <h1 id="safe-result-title" className="break-words text-[30px] font-bold tracking-[-0.05em] text-ink sm:text-[40px]">Scan Verdict: Clean Contract</h1>
+          <p className="mt-3 break-words text-[14px] leading-6 text-slate">Automatic assessment for {fileName}. Matches all baseline risk compliance parameters.</p>
 
           <div className="mt-8 rounded-xl border border-line bg-white px-5 py-14 text-center shadow-card sm:px-8 sm:py-16">
             <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#eafaf4] text-green">
